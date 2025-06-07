@@ -7,6 +7,15 @@ export const getVehiculos = (req, res) => {
   })
 }
 
+export const getVehiculoById = (req, res) => {
+  const { id } = req.params
+  connection.query('SELECT * FROM vehiculos WHERE id = ?', [id], (err, results) => {
+    if (err) return res.status(500).json({ error: err.message })
+    if (results.length === 0) return res.status(404).json({ message: 'Vehículo no encontrado' })
+    res.json(results[0])
+  })
+}
+
 export const createVehiculo = (req, res) => {
   const { marca, modelo, anio, color, placa } = req.body
   const sql = 'INSERT INTO vehiculos (marca, modelo, anio, color, placa) VALUES (?, ?, ?, ?, ?)'

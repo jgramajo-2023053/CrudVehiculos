@@ -1,16 +1,18 @@
 import express from 'express'
 import {
   getVehiculos,
+  getVehiculoById,
   createVehiculo,
   updateVehiculo,
   deleteVehiculo,
 } from './vehiculo.controller.js'
 
-const router = express.Router()
+const api = express.Router()
 
-router.get('/', getVehiculos)
-router.post('/', createVehiculo)
-router.put('/:id', updateVehiculo)
-router.delete('/:id', deleteVehiculo)
+api.get('/', getVehiculos)
+api.get('/:id', getVehiculoById)
+api.post('/', createVehiculo)
+api.put('/:id', updateVehiculo)
+api.delete('/:id', deleteVehiculo)
 
-export default router
+export default api
