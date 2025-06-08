@@ -6,13 +6,14 @@ import {
   updateVehiculo,
   deleteVehiculo,
 } from './vehiculo.controller.js'
+import {vehiculoValidator} from '../middlewares/vehiculo.validators.js'
 
 const api = express.Router()
 
 api.get('/', getVehiculos)
 api.get('/:id', getVehiculoById)
-api.post('/', createVehiculo)
-api.put('/:id', updateVehiculo)
+api.post('/', vehiculoValidator, createVehiculo)
+api.put('/:id', vehiculoValidator, updateVehiculo)
 api.delete('/:id', deleteVehiculo)
 
 export default api

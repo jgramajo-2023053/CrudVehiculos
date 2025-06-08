@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FormModal } from './model/Form.modal'
 
-export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose, esValido }) => {
+export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose, esValido,  errores = [] }) => {
   return (
     <Modal>
       <Header>
@@ -10,6 +10,13 @@ export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose, esValido }
         <Cerrar onClick={onClose}>✕</Cerrar>
       </Header>
       <FormModal vehiculo={vehiculo} onChange={onChange} disabled={false} />
+      {errores?.length > 0 && (
+        <div style={{ color: 'red', marginBottom: '1rem' }}>
+          {errores.map((err, i) => (
+            <div key={i}>• {err}</div>
+          ))}
+        </div>
+      )}
       <Boton onClick={onSubmit} disabled={!esValido}>Agregar</Boton>
     </Modal>
   )

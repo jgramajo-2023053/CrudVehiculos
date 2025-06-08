@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FormModal } from './model/Form.modal'
 
-export const VerModal = ({ vehiculo, disabled, onChange, onEditar, onCancelar, onEliminar, onClose, esValido }) => {
+export const VerModal = ({ vehiculo, disabled, onChange, onEditar, onCancelar, onEliminar, onClose, esValido, errores = [] }) => {
   return (
     <Overlay>
       <Modal>
@@ -10,6 +10,13 @@ export const VerModal = ({ vehiculo, disabled, onChange, onEditar, onCancelar, o
         <h3>Detalles del Vehículo</h3>
         <FormModal vehiculo={vehiculo} onChange={onChange} disabled={disabled} />
         <Botones>
+          {errores?.length > 0 && (
+            <div style={{ color: 'red', marginBottom: '1rem' }}>
+              {errores.map((err, i) => (
+                <div key={i}>• {err}</div>
+              ))}
+            </div>
+          )}
           <Editar 
             onClick={onEditar} 
             disabled={!disabled && !esValido}
