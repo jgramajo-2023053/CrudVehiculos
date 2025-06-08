@@ -82,6 +82,14 @@ export const Vehiculos = () => {
       .catch(err => alert(err.message))
   }
 
+  const esVehiculoValido = (vehiculo) => {
+    return Object.values(vehiculo).every(valor => String(valor).trim() !== '')
+  }  
+
+  const esNuevoValido = esVehiculoValido(nuevoVehiculo)
+
+  const esValido = vehiculoSeleccionado ? esVehiculoValido(vehiculoSeleccionado) : false
+
   const abrirAgregarModal = () => {
     setNuevoVehiculo({
       marca: '',
@@ -202,6 +210,7 @@ export const Vehiculos = () => {
           onCancelar={editando ? handleCancelarEdicion : null}
           onEliminar={handleEliminar}
           onClose={cerrarModal}
+          esValido={esValido}
         />
       )}
 
@@ -211,6 +220,7 @@ export const Vehiculos = () => {
           onChange={handleChangeNuevo}
           onSubmit={handleSubmitNuevo}
           onClose={cerrarAgregarModal}
+          esValido={esNuevoValido}
         />
       )}
     </Container>

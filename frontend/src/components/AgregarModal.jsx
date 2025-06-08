@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { FormModal } from './model/Form.modal'
 
-export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose }) => {
+export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose, esValido }) => {
   return (
     <Modal>
       <Header>
@@ -10,7 +10,7 @@ export const AgregarModal = ({ vehiculo, onChange, onSubmit, onClose }) => {
         <Cerrar onClick={onClose}>✕</Cerrar>
       </Header>
       <FormModal vehiculo={vehiculo} onChange={onChange} disabled={false} />
-      <Boton onClick={onSubmit}>Agregar</Boton>
+      <Boton onClick={onSubmit} disabled={!esValido}>Agregar</Boton>
     </Modal>
   )
 }
@@ -31,6 +31,10 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  h3{
+    color: black;
+  }
 `
 
 const Cerrar = styled.button`
@@ -49,4 +53,9 @@ const Boton = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+
+  &:disabled {
+    background-color: #aaa;
+    cursor: not-allowed;
+  }
 `
