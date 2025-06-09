@@ -32,7 +32,7 @@ export const Vehiculos = () => {
   // Cargar vehículos
   const cargarVehiculos = () => {
     setLoading(true)
-    fetch('http://localhost:3000/vehiculos')
+    fetch('https://crudvehiculos-production.up.railway.app/vehiculos')
       .then(res => {
         if (!res.ok) throw new Error('Error al obtener los vehículos')
         return res.json()
@@ -82,7 +82,7 @@ export const Vehiculos = () => {
 
   const handleSubmitNuevo = () => {
     setErrores([])
-    fetch('http://localhost:3000/vehiculos', {
+    fetch('https://crudvehiculos-production.up.railway.app/vehiculos', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -107,7 +107,7 @@ export const Vehiculos = () => {
 
   // Modal Ver/Editar/Eliminar
   const abrirModal = (id) => {
-    fetch(`http://localhost:3000/vehiculos/${id}`)
+    fetch(`https://crudvehiculos-production.up.railway.app/vehiculos/${id}`)
       .then(res => {
         if (!res.ok) throw new Error('Error al obtener el vehículo')
         return res.json()
@@ -139,7 +139,7 @@ export const Vehiculos = () => {
   const handleGuardar = () => {
     setErrores([])
 
-    fetch(`http://localhost:3000/vehiculos/${vehiculoSeleccionado.id}`, {
+    fetch(`https://crudvehiculos-production.up.railway.app/vehiculos/${vehiculoSeleccionado.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -167,7 +167,7 @@ export const Vehiculos = () => {
     const confirmar = window.confirm('¿Estás seguro de que deseas eliminar este vehículo?')
     if (!confirmar) return
 
-    fetch(`http://localhost:3000/vehiculos/${vehiculoSeleccionado.id}`, {
+    fetch(`https://crudvehiculos-production.up.railway.app/vehiculos/${vehiculoSeleccionado.id}`, {
       method: 'DELETE'
     })
       .then(res => {
